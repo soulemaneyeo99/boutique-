@@ -1,28 +1,33 @@
 {% load static %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <img src="{% static 'images/logo.png' %}" alt="Étudiant">
-
-  <a class="navbar-brand" href="#">Chez Mr.YEO</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Acceuil</a>
-      </li>
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="{% static 'images/logo.png' %}" alt="Étudiant" class="me-2" height="30">
+      Chez Mr.YEO
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-        <a class="nav-link" href="#">Produits</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Clients</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Commandes</a>
-      </li>
-    </ul>
+          <a class="nav-link {% if request.path == '/' %}active{% endif %}" aria-current="page" href="{% url 'accueil' %}">Accueil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == '/products' %}active{% endif %}" href="#">Produits</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == '/clients' %}active{% endif %}" href="#">Clients</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if request.path == '/commandes' %}active{% endif %}" href="#">Commandes</a>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center">
+        <span class="text-white me-3">Bonjour, <b class="text-success">{{ request.user }}</b>! 😇</span>
+        <a href="{% url 'Quitter' %}" class="btn btn-danger btn-sm">Quitter</a>
+      </div>
+    </div>
   </div>
-  <span><a href="{% url 'Quitter' %}">Quitter</a></span>
-  <h3 style="color: white">Coucou <b style="color: #7CD1C0"> {{request.user}}</b>😇 bien venu dans la boutique de Mr.YEO</h3>
 </nav>
